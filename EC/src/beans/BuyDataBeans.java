@@ -14,6 +14,11 @@ public class BuyDataBeans  implements Serializable {
 	private String deliveryMethodName;
 	private int deliveryMethodPrice;
 
+	public BuyDataBeans() {
+
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -55,7 +60,7 @@ public class BuyDataBeans  implements Serializable {
 	}
 
 	public String getFormatDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日H時mm分");
 		return sdf.format(buyDate);
 	}
 	public int getDeliveryMethodPrice() {

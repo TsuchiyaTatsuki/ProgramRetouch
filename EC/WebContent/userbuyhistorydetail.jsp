@@ -1,10 +1,22 @@
 <%@	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import=" java.util.ArrayList"%>
+<%@ page import="beans.ItemDataBeans"%>
+<%@ page import="beans.BuyDetailDataBeans"%>
+<%@ page import="beans.BuyDataBeans"%>
+
+<jsp:useBean id="date" class="java.util.Date"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>購入履歴詳細</title>
 <jsp:include page="/baselayout/head.html" />
+<%
+	ArrayList<ItemDataBeans> buyItemList = (ArrayList<ItemDataBeans>)request.getAttribute("buyitemList");
+	BuyDataBeans buyData = (BuyDataBeans)request.getAttribute("buyData");
+%>
 </head>
 <body>
 	<jsp:include page="/baselayout/header.jsp" />
@@ -21,17 +33,19 @@
 					<div class="card-content">
 						<table>
 							<thead>
+
 								<tr>
-									<th class="center" style="width: 20%;">購入日時</th>
+									<th class="center" style="width: 30%;">購入日時</th>
 									<th class="center">配送方法</th>
-									<th class="center" style="width: 20%">合計金額</th>
+									<th class="center" style="width: 30%">合計金額</th>
 								</tr>
 							</thead>
 							<tbody>
+
 								<tr>
-									<td class="center">1234年56月78日90時12分</td>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
+									<td class="center"><%=buyData.getFormatDate() %></td>
+									<td class="center"><%=buyData.getDeliveryMethodName() %></td>
+									<td class="center"><%=buyData.getTotalPrice() %>円</td>
 								</tr>
 							</tbody>
 						</table>
@@ -52,22 +66,25 @@
 								</tr>
 							</thead>
 							<tbody>
+
+								<%
+								for(ItemDataBeans buyItem : buyItemList) {
+								%>
+
 								<tr>
-									<td class="center">サンプル商品名1</td>
-									<td class="center">111111111円</td>
+									<td class="center"><%=buyItem.getName() %></td>
+									<td class="center"><%=buyItem.getPrice() %>円</td>
 								</tr>
+
+								<%
+								}
+								%>
 								<tr>
-									<td class="center">サンプル商品名2</td>
-									<td class="center">222222222円</td>
+									<td class="center"><%=buyData.getDeliveryMethodName() %></td>
+									<td class="center"><%=buyData.getDeliveryMethodPrice() %>円</td>
 								</tr>
-								<tr>
-									<td class="center">サンプル商品名3</td>
-									<td class="center">333333333円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
-								</tr>
+
+
 							</tbody>
 						</table>
 					</div>

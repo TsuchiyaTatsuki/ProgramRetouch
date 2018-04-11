@@ -11,6 +11,7 @@
 <%
 	ArrayList<ItemDataBeans> cart = (ArrayList<ItemDataBeans>) session.getAttribute("cart");
 	BuyDataBeans bdb = (BuyDataBeans) session.getAttribute("bdb");
+
 %>
 </head>
 <body>
